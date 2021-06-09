@@ -63,6 +63,9 @@ const appRoutes: Routes = [
     path: 'questionnaire', loadChildren: 'app/modules/questionnaire/questionnaire.module#QuestionnaireModule'
   },
   {
+    path: 'uci', loadChildren: 'app/modules/uci/uci.module#UciModule'
+  },
+  {
     path: 'error', component: ErrorPageComponent
   },
   {
