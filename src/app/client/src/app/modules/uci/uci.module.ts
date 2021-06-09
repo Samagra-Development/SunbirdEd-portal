@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { DiscussionRoutingModule } from './discussion-routing.module';
 import { ForumComponent } from './components/forum/forum.component';
-import { DiscussionUiModule, DiscussionEventsService } from '@samagra-x/uci-console';
+import { UciModule, UciEventsService } from '@samagra-x/uci-console';
 import { DiscussionTelemetryService } from '../shared/services/discussion-telemetry/discussion-telemetry.service';
 import * as _ from 'lodash-es';
 import { NavigationHelperService } from '@sunbird/shared';
@@ -15,18 +15,18 @@ import { AccessDiscussionComponent } from './components/access-discussion/access
   imports: [
     CommonModule,
     SuiModalModule,
-    DiscussionUiModule
+    UciModule
   ],
-  exports: [ DiscussionUiModule , AccessDiscussionComponent],
+  exports: [ UciModule , AccessDiscussionComponent],
   declarations: [ ForumComponent, AccessDiscussionComponent ],
   providers: [ DiscussionService ]
 })
-export class UciModule {
+export class UciConsoleModule {
   constructor(
-    private discussionEvents: DiscussionEventsService,
+    private uciEvents: UciEventsService,
     private discussionTelemetryService: DiscussionTelemetryService,
     private navigationHelperService: NavigationHelperService) {
-    this.discussionEvents.telemetryEvent.subscribe(event => {
+    this.uciEvents.telemetryEvent.subscribe(event => {
       this.discussionTelemetryService.logTelemetryEvent(event);
       if (_.get(event, 'action') === 'DF_CLOSE' ) {
         this.navigationHelperService.navigateToLastUrl();
