@@ -51,6 +51,9 @@ const appRoutes: Routes = [
     path: 'discussion-forum', loadChildren: () => import('app/modules/discussion/discussion.module').then(m => m.DiscussionModule)
   },
   {
+    path: 'uci', loadChildren: () => import('app/modules/uci/uci.module').then(m => m.UciConsoleModule) 
+  },
+  {
     path: MY_GROUPS, loadChildren: () => import('app/modules/groups/groups.module').then(m => m.GroupsModule)
   },
   {
